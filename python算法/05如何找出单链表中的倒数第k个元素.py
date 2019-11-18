@@ -40,9 +40,21 @@ def GetkElementReverse(Head ):
         temp = temp.Next
     print(temp.Next.Data)
 
+def GetkElementReverse2(Head ):
+    k = int(input("Please input the reversed order that you would like to get:"))
+    PointerQuick = Head
+    PointerSlow = Head
+    for i in range(k):
+        PointerQuick = PointerQuick.Next
+    while PointerQuick != None:
+        PointerQuick = PointerQuick.Next
+        PointerSlow = PointerSlow.Next
+    print(PointerSlow.Data)
+
+
 if __name__ == "__main__":
     Head = InputData()
     print("The linked list that input is: ")
     Display(Head)
-    GetkElementReverse(Head)
+    GetkElementReverse2(Head)
 
