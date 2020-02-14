@@ -13,3 +13,5 @@ totalSize ： 40000（最终生成的文件的大小，建议10000就可以了）
 whiteImagePath = ["F:/study1/研一/Python-CommonCode/HappyTimes/ValentineDay/whitebackground.jpg"]（背景图片路径及名称）
 
 whiteGoalPath = "F:/study1/研一/Python-CommonCode/HappyTimes/ValentineDay/"（背景图片路径）
+
+note：可以将整体图片复制若干次来增大心形的大小。
