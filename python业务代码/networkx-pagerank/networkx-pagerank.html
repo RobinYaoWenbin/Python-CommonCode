@@ -11849,7 +11849,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.&#35745;&#31639;Pagerank">2.&#35745;&#31639;Pagerank<a class="anchor-link" href="#2.&#35745;&#31639;Pagerank">&#182;</a></h2><p><strong>PR=alpha<em>(A </em> PR+dangling分配)+(1-alpha) * 平均分配</strong></p>
+<h2 id="2.&#35745;&#31639;Pagerank">2.&#35745;&#31639;Pagerank<a class="anchor-link" href="#2.&#35745;&#31639;Pagerank">&#182;</a></h2><p><strong>PR=alpha <em> (A </em> PR+dangling分配)+(1-alpha) * 平均分配</strong></p>
 <p><strong>也就是三部分，A*PR其实是我们用图矩阵分配的，dangling分配则是对dangling node的PR值进行分配，(1-alpha)分配则是天下为公大家一人一份分配的</strong></p>
 <p><strong>dangling node 也就是悬空结点，它的出度为0，也就是无法从它到任何其他结点，解决办法是增加一定的随机性，dangling分配其实就是加上一个随机向量，也就是无法从这个结点去往任何其他结点，但是可能会随机重新去一个结点，也可以这么理解，到了一个网站，这个网站不连接到任何网站，但是浏览者可能重新随机打开一个页面。</strong></p>
 <p><strong>其实通俗的来说，我们可以将PageRank看成抢夺大赛，有三种抢夺机制。</strong></p>
@@ -11991,15 +11991,75 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>成功验证上述的说法是准确无误的，网上大多数的pagerank说明都是和networkx的pagerank的实现不一样的。</p>
 <p>验证方法：</p>
 <p>将上述算法计算得到的PR(A)和PR(B)代入到PR(A)和PR(B)的计算公式中，观察结果是否稳定，即达到达到pagerank的收敛条件。</p>
 <p>PR(A)=0.15/2+0.85 <em> 0.5 </em> 0.649123=0.350877</p>
 <p>PR(B)=0.350877+0.85 * 0.35087=0.649123
-得证。</p>
+得证，说明源码解析中的说法是正确的。</p>
+<p>同时我还发现有意思的是用网上传统的那些说法，归一化后也和上述计算值是一模一样的。
+<img src="https://img-blog.csdnimg.cn/20200625114858428.png" alt="在这里插入图片描述"></p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">G3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">G3</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">])</span>    <span class="c1">#加点集合</span>
+<span class="n">G3</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;A&#39;</span> <span class="p">,</span><span class="s1">&#39;B&#39;</span> <span class="p">)</span>   <span class="c1">#一次添加一条边</span>
+<span class="n">G3</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;B&#39;</span> <span class="p">,</span><span class="s1">&#39;C&#39;</span> <span class="p">)</span>   <span class="c1">#一次添加一条边</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G3</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span> <span class="p">,</span> <span class="n">node_size</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span> <span class="n">personalization</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">max_iter</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">nstart</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span>
+             <span class="n">dangling</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">pr</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;A&#39;: 0.1844167633067642, &#39;B&#39;: 0.3411716203526378, &#39;C&#39;: 0.47441161634059753}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>
