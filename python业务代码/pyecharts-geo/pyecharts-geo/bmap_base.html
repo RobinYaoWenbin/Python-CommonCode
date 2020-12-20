@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+        <script type="text/javascript" src="https://assets.pyecharts.org/assets/bmap.min.js"></script>
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=MFVAosuKvEMP9Oip0DWvdTeU1DkILEPL"></script>
+        <script type="text/javascript" src="https://api.map.baidu.com/getscript?v=2.0&ak=MFVAosuKvEMP9Oip0DWvdTeU1DkILEPL"></script>
+
+</head>
+<body>
+    <div id="791982b1b1db47e890250a515f6c067e" class="chart-container" style="width:1400px; height:800px;"></div>
+    <script>
+        var chart_791982b1b1db47e890250a515f6c067e = echarts.init(
+            document.getElementById('791982b1b1db47e890250a515f6c067e'), 'white', {renderer: 'canvas'});
+        var option_791982b1b1db47e890250a515f6c067e = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "effectScatter",
+            "name": "bmap",
+            "coordinateSystem": "bmap",
+            "showEffectOn": "render",
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            },
+            "symbolSize": 12,
+            "data": [
+                {
+                    "name": "A",
+                    "value": [
+                        120.075231,
+                        30.311932,
+                        1
+                    ]
+                },
+                {
+                    "name": "B",
+                    "value": [
+                        120.07656,
+                        30.302422,
+                        1
+                    ]
+                },
+                {
+                    "name": "C",
+                    "value": [
+                        120.089388,
+                        30.300863,
+                        1
+                    ]
+                },
+                {
+                    "name": "D",
+                    "value": [
+                        120.099161,
+                        30.301269,
+                        1
+                    ]
+                },
+                {
+                    "name": "E",
+                    "value": [
+                        120.097832,
+                        30.316172,
+                        1
+                    ]
+                },
+                {
+                    "name": "F",
+                    "value": [
+                        120.086118,
+                        30.316452,
+                        1
+                    ]
+                }
+            ],
+            "label": {
+                "show": true,
+                "position": "right",
+                "margin": 8,
+                "formatter": "{b}"
+            },
+            "itemStyle": {
+                "color": "purple"
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "bmap"
+            ],
+            "selected": {
+                "bmap": true
+            },
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u7d2b\u91d1\u6e2f\u6253\u51e0\u4e2a\u70b9",
+            "subtext": "just see the bmap's function",
+            "sublink": "http://www.pm25.in",
+            "left": "center",
+            "padding": 5,
+            "itemGap": 10,
+            "textStyle": {
+                "color": "#fff"
+            }
+        }
+    ],
+    "bmap": {
+        "center": [
+            120.088058,
+            30.307723
+        ],
+        "zoom": 15,
+        "roam": true
+    }
+};
+        chart_791982b1b1db47e890250a515f6c067e.setOption(option_791982b1b1db47e890250a515f6c067e);
+            var bmap = chart_791982b1b1db47e890250a515f6c067e.getModel().getComponent('bmap').getBMap();
+                    bmap.addControl(new BMap.NavigationControl({"anchor": 0, "offset": {"width": 10, "height": 10}, "type": 0, "showZoomInfo": false, "enableGeolocation": false}));
+                    var overview = new BMap.OverviewMapControl({"anchor": 3, "offset": {"width": 10, "height": 50}, "isOpen": true});
+                    bmap.addControl(overview);
+                    bmap.addControl(new BMap.ScaleControl({"anchor": 2, "offset": {"width": 80, "height": 21}}));
+                    bmap.addControl(new BMap.MapTypeControl({"anchor": 1, "type": 1}));
+                    var copyright = new BMap.CopyrightControl({"anchor": 3, "offset": {"width": 2, "height": 2}});
+                    copyright.addCopyright({"id": 1, "content": ""});
+                    bmap.addControl(copyright);
+                    bmap.addControl(new BMap.GeolocationControl({"anchor": 2, "offset": {"width": 10, "height": 10}, "showAddressBar": true, "enableAutoLocation": false}))
+    </script>
+</body>
+</html>
