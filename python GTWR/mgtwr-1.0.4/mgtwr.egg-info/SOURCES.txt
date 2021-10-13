@@ -1,0 +1,13 @@
+setup.cfg
+setup.py
+mgtwr/__init__.py
+mgtwr/diagnosis.py
+mgtwr/gtwr.py
+mgtwr/kernels.py
+mgtwr/search.py
+mgtwr/sel_bws.py
+mgtwr/setup.py
+mgtwr.egg-info/PKG-INFO
+mgtwr.egg-info/SOURCES.txt
+mgtwr.egg-info/dependency_links.txt
+mgtwr.egg-info/top_level.txt
